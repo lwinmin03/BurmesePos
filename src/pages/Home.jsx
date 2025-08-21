@@ -5,12 +5,12 @@ function Home() {
         <header className="home-header flex w-full  h-full">
 
 
-            <main className="main-content w-3/4  h-full">
+            <main className="main-content w-full md:w-2/3 bg-fuchsia-400  h-full">
                 <Product/>
             </main>
 
 
-            <div className="receipt-content w-1/4  h-full">
+            <div className="receipt-content hidden md:block sm:w-1/3  h-full">
                 <Receipt />
             </div>
 

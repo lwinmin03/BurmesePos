@@ -14,11 +14,11 @@ function Layout() {
     return (
 
         <>
-            { isLoggedIn ? <main className={`flex w-full h-full`}>
-             <div className={`flex-none h-full`}>
+            { isLoggedIn ? <main className={`flex w-screen h-screen`}>
+             <div className={`sm:flex-none z-50 w-full sm:w-fit sm:flex h-full`}>
                  <Sidebar/>
              </div>
-                <div className={`Main-Content flex flex-col flex-1`}>
+                <div className={`Main-Content flex h-full overflow-hidden flex-col flex-1`}>
                 <header>
                     <Header/>
                 </header>
