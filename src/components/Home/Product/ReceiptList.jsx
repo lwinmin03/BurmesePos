@@ -1,135 +1,40 @@
+import useReceiptStore from "../../../store/useReceiptStore.js";
+import {Minus} from "lucide-react";
+
 function ReceiptList() {
+    const receipts=useReceiptStore();
     return(
-        <div className={`bg-white shadow-md h-3/5`}>
+        <div className={`bg-white  h-3/5`}>
 
 
-                <li className={`list-none p-2 scroll-auto h-full overflow-y-scroll`}>
-                   <div className={`flex justify-between my-2 bg-gray-100 p-1 rounded-sm`}>
-                        <span>
-                        Product Name
-                    </span>
-                       <span>x2</span>
-                       <span>1000 Kyats</span>
-                   </div>
-                    <div className={`flex justify-between my-2 bg-gray-100 p-1 rounded-sm`}>
-                        <span>
-                        Product Name
-                    </span>
-                        <span>x2</span>
-                        <span>1000 Kyats</span>
+                <li className={`list-none p-2  scroll-auto h-full `}>
+
+                    {/* Column headers */}
+                    <div className="flex justify-between top-0 static font-semibold py-2 border-b border-gray-200">
+                        <span className="flex-1">Name</span>
+                        <span className="w-20 text-center">Quantity</span>
+                        <span className="w-20 text-right">Price</span>
+
                     </div>
-                    <div className={`flex justify-between my-2 bg-gray-100 p-1 rounded-sm`}>
-                        <span>
-                        Product Name
-                    </span>
-                        <span>x2</span>
-                        <span>1000 Kyats</span>
+                    <div className="w-full h-full overflow-y-scroll">
+
+
+                        {/* Data rows */}
+                        {receipts.receipts.map((product) => (
+                            <div
+                                key={product.id}
+                                className="flex justify-between py-2"
+                            >
+                                <span className="flex-1">{product.name}</span>
+                                <span className="w-20 text-center">{product.quantity}</span>
+                                <span className="w-20 text-right">{product.price}</span>
+
+                            </div>
+                        ))}
                     </div>
-                    <div className={`flex justify-between my-2 bg-gray-100 p-1 rounded-sm`}>
-                        <span>
-                        Product Name
-                    </span>
-                        <span>x2</span>
-                        <span>1000 Kyats</span>
-                    </div>
-                    <div className={`flex justify-between my-2 bg-gray-100 p-1 rounded-sm`}>
-                        <span>
-                        Product Name
-                    </span>
-                        <span>x2</span>
-                        <span>1000 Kyats</span>
-                    </div>
-                    <div className={`flex justify-between my-2 bg-gray-100 p-1 rounded-sm`}>
-                        <span>
-                        Product Name
-                    </span>
-                        <span>x2</span>
-                        <span>1000 Kyats</span>
-                    </div>
-                    <div className={`flex justify-between my-2 bg-gray-100 p-1 rounded-sm`}>
-                        <span>
-                        Product Name
-                    </span>
-                        <span>x2</span>
-                        <span>1000 Kyats</span>
-                    </div>
-                    <div className={`flex justify-between my-2 bg-gray-100 p-1 rounded-sm`}>
-                        <span>
-                        Product Name
-                    </span>
-                        <span>x2</span>
-                        <span>1000 Kyats</span>
-                    </div>
-                    <div className={`flex justify-between my-2 bg-gray-100 p-1 rounded-sm`}>
-                        <span>
-                        Product Name
-                    </span>
-                        <span>x2</span>
-                        <span>1000 Kyats</span>
-                    </div>
-                    <div className={`flex justify-between my-2 bg-gray-100 p-1 rounded-sm`}>
-                        <span>
-                        Product Name
-                    </span>
-                        <span>x2</span>
-                        <span>1000 Kyats</span>
-                    </div>
-                    <div className={`flex justify-between my-2 bg-gray-100 p-1 rounded-sm`}>
-                        <span>
-                        Product Name
-                    </span>
-                        <span>x2</span>
-                        <span>1000 Kyats</span>
-                    </div>
-                    <div className={`flex justify-between my-2 bg-gray-100 p-1 rounded-sm`}>
-                        <span>
-                        Product Name
-                    </span>
-                        <span>x2</span>
-                        <span>1000 Kyats</span>
-                    </div>
-                    <div className={`flex justify-between my-2 bg-gray-100 p-1 rounded-sm`}>
-                        <span>
-                        Product Name
-                    </span>
-                        <span>x2</span>
-                        <span>1000 Kyats</span>
-                    </div>
-                    <div className={`flex justify-between my-2 bg-gray-100 p-1 rounded-sm`}>
-                        <span>
-                        Product Name
-                    </span>
-                        <span>x2</span>
-                        <span>1000 Kyats</span>
-                    </div>
-                    <div className={`flex justify-between my-2 bg-gray-100 p-1 rounded-sm`}>
-                        <span>
-                        Product Name
-                    </span>
-                        <span>x2</span>
-                        <span>1000 Kyats</span>
-                    </div>
-                    <div className={`flex justify-between my-2 bg-gray-100 p-1 rounded-sm`}>
-                        <span>
-                        Product Name
-                    </span>
-                        <span>x2</span>
-                        <span>1000 Kyats</span>
-                    </div>
-                    <div className={`flex justify-between my-2 bg-gray-100 p-1 rounded-sm`}>
-                        <span>
-                        Product Name
-                    </span>
-                        <span>x2</span>
-                        <span>1000 Kyats</span>
-                    </div>
-                    <div className={`flex justify-between my-2 bg-gray-100 p-1 rounded-sm`}>
-                        <span>
-                        Product Name
-                    </span>
-                        <span>x2</span>
-                        <span>1000 Kyats</span>
-                    </div>
+
+
+
 
                 </li>
 

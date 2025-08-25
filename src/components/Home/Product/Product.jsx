@@ -39,7 +39,7 @@ const totalPages=Math.ceil(burmeseFood.length/pagePerFood);
     return (
         <div className={`w-full h-full mt-2 px-2 overflow-y-hidden flex flex-col gap-2 `}>
 
-            <header className=" flex h-1/12 w-1/2 sm:w-full  bg-red-400 items-center justify-start gap-5">
+            <header className=" flex h-1/12 w-1/2 sm:w-full  items-center justify-start gap-5">
              <div className={`flex items-center gap-3 max-w-2/3`}>
                  {category.map((category) => (
                      <button className={`px-2 max-w-28 py-2 rounded-sm shadow cursor-pointer 
@@ -54,7 +54,7 @@ const totalPages=Math.ceil(burmeseFood.length/pagePerFood);
 
 
 
-            <main className={`min-h-9/12 w-full  overflow-y-scroll sm:overflow-y-hidden mt-2  gap-2 place-items-center  md:place-items-start  sm:grid-cols-1 grid md:grid-cols-3 md:grid-rows-1  lg:grid-cols-4 lg:grid-rows-3`}>
+            <main className={`min-h-9/12 w-full  overflow-y-scroll sm:overflow-y-hidden mt-2 gap-1 md:gap-2  place-items-center  md:place-items-start  grid-cols-2 grid md:grid-cols-3  lg:grid-cols-4 `}>
                 {currentProducts.map((food) => (
 
                       <ProductCard  name={food.name} price={food.price} key={food.id} />
