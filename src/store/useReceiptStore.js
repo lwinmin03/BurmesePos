@@ -4,9 +4,6 @@ const useReceiptStore=create((set)=>({
     receipts:[],
     addProduct: (receipt) =>
 
-
-
-
         set((state) => {
             const index = state.receipts.findIndex((r) => r.name === receipt.name);
             if (index !== -1) {
@@ -19,7 +16,9 @@ const useReceiptStore=create((set)=>({
                 return { receipts: [...state.receipts, receipt] };
             }
         })
-
+,isCartOpen:false,
+    toggleCart:()=>set((state)=>({isCartOpen:!state.isCartOpen})),
+    closeCart:()=>set({isCartOpen:false}),
 
 }));
 

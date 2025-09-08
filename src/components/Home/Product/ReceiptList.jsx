@@ -10,7 +10,7 @@ function ReceiptList() {
                 <li className={`list-none p-2  scroll-auto h-full `}>
 
                     {/* Column headers */}
-                    <div className="flex justify-between top-0 static font-semibold py-2 border-b border-gray-200">
+                    <div className="flex justify-between  font-semibold py-2 border-b border-gray-200">
                         <span className="flex-1">Name</span>
                         <span className="w-20 text-center">Quantity</span>
                         <span className="w-20 text-right">Price</span>
@@ -22,7 +22,7 @@ function ReceiptList() {
                         {/* Data rows */}
                         {receipts.receipts.map((product) => (
                             <div
-                                key={product.id}
+                                key={product.name}
                                 className="flex justify-between py-2"
                             >
                                 <span className="flex-1">{product.name}</span>

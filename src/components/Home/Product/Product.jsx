@@ -1,80 +1,103 @@
-import {RefreshCw} from "lucide-react";
-import {useState} from "react";
+import { useState } from "react";
 import ProductCard from "./ProductCard.jsx";
 import burmeseFood from "../../../Constant/Products.js";
 
 function Product() {
-const [page,setPage] = useState(1);
-const  pagePerFood=9
-let endIndex=page * pagePerFood;
+    const [page, setPage] = useState(1);
+    const [activeCategory, setActiveCategory] = useState("All");
 
-let startIndex=endIndex-pagePerFood;
+    const pagePerFood = 12;
 
+    // Filter products by category
+    const filteredProducts =
+        activeCategory === "All"
+            ? burmeseFood
+            : burmeseFood.filter((food) => food.category === activeCategory);
 
+    // Pagination logic
+    const totalPages = Math.ceil(filteredProducts.length / pagePerFood);
+    const endIndex = page * pagePerFood;
+    const startIndex = endIndex - pagePerFood;
+    const currentProducts = filteredProducts.slice(startIndex, endIndex);
 
-const totalPages=Math.ceil(burmeseFood.length/pagePerFood);
+    const handlePageChange = (newPage) => {
+        setPage(newPage);
+    };
 
-
-    const category=[
-        {id:'C00',name:"All"},
-        {id:'C01',name:"Breakfast"},
-        {id:'C02',name:"Lunch"},
-        {id:'C03',name:"Snack"},
-        {id:'C04',name:"Drink"},
-    ]
-
-
-
-
-    const handlePageChange = (page) => {
-        setPage(page);
-    }
-
-    const currentProducts=burmeseFood.slice(startIndex,endIndex);
-
-
-    const [activeCategory,setActiveCategory] = useState('Drink')
-
+    const categories = [
+        { id: "C00", name: "All" },
+        { id: "C01", name: "Breakfast" },
+        { id: "C02", name: "Lunch" },
+        { id: "C03", name: "Snack" },
+        { id: "C04", name: "Drink" },
+    ];
 
     return (
-        <div className={`w-full h-full mt-2 px-2 overflow-y-hidden flex flex-col gap-2 `}>
-
-            <header className=" flex h-1/12 w-1/2 sm:w-full  items-center justify-start gap-5">
-             <div className={`flex items-center gap-3 max-w-2/3`}>
-                 {category.map((category) => (
-                     <button className={`px-2 max-w-28 py-2 rounded-sm shadow cursor-pointer 
-                        ${activeCategory===category.name ? "bg-gray-900 text-white" : "text-gray-900 bg-white"}`} key={category.id}>{category.name}</button>
-                 ))}
-             </div>
-
-
-
-                <button className={`bg-gray-800 text-white ml-auto cursor-pointer shadow-md px-2 rounded-sm py-2 flex items-center gap-2`}><RefreshCw size={13}/> <span>Refresh</span> </button>
+        <div className="w-full h-full mt-2 px-2 overflow-y-auto flex flex-col gap-2">
+            {/* Category Header */}
+            <header className="flex p-2 overflow-x-auto items-center justify-start gap-5">
+                <div className="flex py-1 overflow-y-hidden items-center gap-5 w-full">
+                    {categories.map((cat) => (
+                        <button
+                            key={cat.id}
+                            onClick={() => {
+                                setActiveCategory(cat.name);
+                                setPage(1);
+                            }}
+                            className={`px-2 max-w-28 py-2 rounded-sm shadow cursor-pointer ${
+                                activeCategory === cat.name
+                                    ? "bg-gray-900 text-white"
+                                    : "text-gray-900 bg-white"
+                            }`}
+                        >
+                            {cat.name}
+                        </button>
+                    ))}
+                </div>
             </header>
 
+            {/* Product Grid */}
+            <main className="min-h-[75%] w-full overflow-y-scroll mt-2 gap-1 md:gap-2 place-items-center md:place-items-start grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                {currentProducts.length > 0 ? (
+                    currentProducts.map((food) => (
+                        <ProductCard
+                            key={food.id}
+                            name={food.name}
+                            price={food.price}
 
-
-            <main className={`min-h-9/12 w-full  overflow-y-scroll sm:overflow-y-hidden mt-2 gap-1 md:gap-2  place-items-center  md:place-items-start  grid-cols-2 grid md:grid-cols-3  lg:grid-cols-4 `}>
-                {currentProducts.map((food) => (
-
-                      <ProductCard  name={food.name} price={food.price} key={food.id} />
-
-                ))}
-
-
+                        />
+                    ))
+                ) : (
+                    <p className="text-center col-span-full text-gray-500">
+                        No products found.
+                    </p>
+                )}
             </main>
 
+            {/* Pagination */}
+            <div className="h-1/12 mb-3 lg:mb-0 flex justify-between items-center gap-5">
+                <button
+                    disabled={page === 1}
+                    onClick={() => handlePageChange(page - 1)}
+                    className="px-2 bg-white w-28 py-2 rounded-sm shadow cursor-pointer disabled:opacity-50"
+                >
+                    PREV
+                </button>
 
-            <div className={` h-1/12 paginate Control mt-2 mb-1 flex self-stretch  items-center justify-self-end gap-5  `}>
+                <span>
+          {page} of {totalPages}
+        </span>
 
-                <button disabled={page===1} onClick={()=>handlePageChange(page-1)} className={`px-2 bg-white w-28 py-2 rounded-sm shadow cursor-pointer`}>PREV</button>
-                <span>{page} of {totalPages}</span>
-                <button   onClick={()=>handlePageChange(page+1)} disabled={page===totalPages}    className={`px-2 w-28 py-2 bg-white rounded-sm shadow  cursor-pointer`}>NEXT</button>
+                <button
+                    disabled={page === totalPages}
+                    onClick={() => handlePageChange(page + 1)}
+                    className="px-2 bg-white w-28 py-2 rounded-sm shadow cursor-pointer disabled:opacity-50"
+                >
+                    NEXT
+                </button>
             </div>
-
-
         </div>
-    )
+    );
 }
 
 export default Product;
