@@ -19,6 +19,10 @@ const useReceiptStore=create((set)=>({
 ,isCartOpen:false,
     toggleCart:()=>set((state)=>({isCartOpen:!state.isCartOpen})),
     closeCart:()=>set({isCartOpen:false}),
+    isPopupOpen:false,
+
+   openPopup:()=>set({isPopupOpen:true}),
+    closePopup:()=>set({isPopupOpen:false}),
 
 }));
 

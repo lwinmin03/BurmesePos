@@ -8,9 +8,15 @@ import Setting from "./Setting.jsx";
 import Header from "../components/common/Header.jsx";
 import Inventory from "./Inventory.jsx";
 import useSidebarStore from "../store/useSidebarStore.js";
+import ConfirmPopup from "../components/common/ConfirmPopup.jsx";
+import useReceiptStore from "../store/useReceiptStore.js";
+import Receipt from "../components/Home/Product/Receipt.jsx";
+import ReceiptMobile from "../components/Home/Product/ReceiptMobile.jsx";
 
 function Layout() {
+    const {toggleCart,isCartOpen,isPopupOpen}=useReceiptStore();
     const {isOpen}=useSidebarStore();
+
 
     const [isLoggedIn, setIsLoggedIn] =useState(true);
     return (
@@ -23,12 +29,23 @@ function Layout() {
              </div>
 
 
+                <div className={`container ${isPopupOpen?"flex ":"hidden"} right-0 left-0 w-full h-full justify-center items-center   z-60 absolute `}>
+                    <ConfirmPopup/>
+                </div>
+
+
                 <div className={`z-50 overflow-x-hidden absolute  transition-all ease-linear delay-75  md:hidden bg-black   h-full ${isOpen ? 'w-3/4 translate-x-0' : ' -translate-x-36'}` }>
                     <Sidebar/>
                 </div>
 
                 <div className={`Main-Content ${isOpen && "blur-xs"} flex h-full overflow-hidden z-40 flex-col flex-1`}>
-                <header>
+
+                    <div className={`absolute z-50 transition-all ease-linear delay-100 h-full right-0 top-0 receipt-content  md:hidden  w-full  ${isCartOpen ? "translate-x-0" :"-translate-x-full" }  h-full`}>
+
+                        <ReceiptMobile />
+                    </div>
+
+                    <header>
                     <Header/>
                 </header>
                     <div className={`  overflow-y-hidden h-full`}>

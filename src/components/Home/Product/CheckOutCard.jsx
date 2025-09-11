@@ -8,7 +8,7 @@ function CheckOutCard() {
     ];
 
     const [paymentMethod, setPaymentMethod] = useState("");
-
+    const openPopup=useReceiptStore((state)=>state.openPopup);
     const receipts = useReceiptStore((state) => state.receipts);
 
     const subTotal = receipts.reduce(
@@ -61,6 +61,7 @@ function CheckOutCard() {
             {/* Submit Button */}
             <button
                 disabled={receipts.length === 0}
+                onClick={openPopup}
                 className="w-full bg-gray-900 text-white shadow-sm py-1.5 px-1 cursor-pointer rounded-sm disabled:cursor-not-allowed"
             >
                 Invoice Process
